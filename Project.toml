@@ -2,3 +2,9 @@ name = "Pilgrimygy"
 uuid = "4ffcb5ad-2e34-4ad5-8c10-fc6b958fad30"
 authors = ["GuoYu Yang <49673553+pilgrimygy@users.noreply.github.com>"]
 version = "0.1.0"
+
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+
+[compat]
+Documenter = "0.27"
