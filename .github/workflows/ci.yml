@@ -55,11 +55,11 @@ jobs:
             using Pkg
             Pkg.develop(PackageSpec(path=pwd()))
             Pkg.instantiate()'
-      - run: |
-          julia --project=docs -e '
-            using Documenter: doctest
-            using Pilgrimygy
-            doctest(Pilgrimygy)'
+      #- run: |
+      #    julia --project=docs -e '
+      #      using Documenter: doctest
+      #      using Pilgrimygy
+      #      doctest(Pilgrimygy)'
       - run: julia --project=docs docs/make.jl
 
       - uses: peaceiris/actions-gh-pages@v3
