@@ -65,6 +65,7 @@ jobs:
       - uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.DOCUMENTER_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           external_repository: pilgrimygy/pilgrimygy.github.io
           force_orphan: true
           publish_branch: main
