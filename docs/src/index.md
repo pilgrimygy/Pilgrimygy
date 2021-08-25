@@ -4,6 +4,10 @@
 <img src="assets/logo_square.jpg" width = "300" align=center />
 ```
 
+> "Good fortune follows upon disaster; disaster lurks within good fortune."
+> 
+> -- Lao Tzu
+
 ### 关于我
 经历：
 
