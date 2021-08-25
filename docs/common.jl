@@ -131,7 +131,7 @@ end
 
 const COMMENT_TEMPLATE = """
     <script src="https://utteranc.es/client.js"
-            repo="findmyway/TianJun.jl"
+            repo="pilgrimygy/Pilgrimygy"
             issue-term="url"
             label="💬Comment"
             theme="github-light"
