@@ -19,7 +19,7 @@ makedocs(
         "👋 关于" => "index.md",
         "🔗 友链" => "blogroll.md",
         "🗃️ 研究" => [
-
+            "离线强化学习中的不确定性" => "essays/uncertainty_in_offline_rl/index.md",
         ],
         "💻 技术" => [
 
