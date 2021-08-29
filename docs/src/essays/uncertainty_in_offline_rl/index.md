@@ -1,4 +1,4 @@
-## 离线强化学习中的不确定性
+# 离线强化学习中的不确定性
 
 ```@blog_meta
 last_update="2021-08-16"
@@ -21,7 +21,7 @@ $$\pi_{k+1} = \argmax_{\pi} \mathbb{E}_{a\sim \mathcal{D}}[\mathbb{E}_{a\sim \pi
 
 在这里，$\mathcal{P}_\mathcal{D}$是给定数据集，Q函数的集合，而$Unc$就是Q集合的不确定值。这样，在不确定值大的时候策略趋于保守。
 
-### 集成方法
+## 集成方法
 
 这个方法来自文献[2]，是发表在ICML'20上的一篇文章。
 
@@ -30,14 +30,14 @@ $$\pi_{k+1} = \argmax_{\pi} \mathbb{E}_{a\sim \mathcal{D}}[\mathbb{E}_{a\sim \pi
 $$Q(s,a)=\sum_{i=1}^N \alpha_iQ_{\phi_i}(s,a), \sum_{i=1}^N\alpha_i=1$$
 
 ```@raw html
-<img src="essays/uncertainty_in_offline_rl/REM.png" width = "200" align=center />
+<img src="REM.png" width = "300" align=center />
 ```
 
 其余的更新方式就类似于普通的DQN。这个方案比起之前提出的独立学习多个Q网络的，然后选择的时候投票选择的Bootstrap ensemble方法来说更优。因为Bootstrap ensemble方法虽然是利用到了不确定性，但是这个集成方案中，实际上Q值很容易趋同，缺少多样性，导致不确定性估计的错误。不确定性的估计本身也需要策略具有一定的多样性。
 
 我复现了这个方法（[代码](https://github.com/JuliaReinforcementLearning/ReinforcementLearning.jl/blob/master/src/ReinforcementLearningZoo/src/algorithms/dqns/rem_dqn.jl)），但是实际效果并不好。仔细研读论文发现一个问题：可能要在覆盖面较广的专家数据集上训练才会有比较好的效果。
 
-### Monte Carlo Dropout方法
+## Monte Carlo Dropout方法
 
 这个方法来自文献[3]，是发表在ICML'21上的一篇spotlight文章。
 
@@ -69,7 +69,7 @@ $$\mathcal{L}(\pi)=-\mathbb{E}_{a\sim \pi}\Big[\frac{\beta}{\mathbb{V}[Q_0^{\pi'
 UWAC是在基线算法BEAR$^{[5]}$上进行改进的，伪代码如下：
 
 ```@raw html
-<img src="essays/uncertainty_in_offline_rl/UWAC.png" width = "400" align=center />
+<img src="UWAC.png" width = "400" align=center />
 ```
 
 UWAC的做法是很直观的，并且对原基线算法的改动很小（红色标记）。UWAC用dropout的方式得到多个Q值。如果本身我们能对这个样本进行准确估计的时候，这个方差就会比较小，从而使得策略更偏向于选择这个样本对应的动作。如果不能准确估计则相反。
@@ -77,16 +77,16 @@ UWAC的做法是很直观的，并且对原基线算法的改动很小（红色�
 实验结果如下：
 
 ```@raw html
-<img src="essays/uncertainty_in_offline_rl/UWACexp.png" width = "800" align=center />
+<img src="UWACexp.png" width = "800" align=center />
 ```
 
 从这个实验结果我们能够看出一些问题：UWAC在专家数据集上的表现很好，超过了现有的其他方法。但是在次优甚至随机的数据集中表现就和他的基线算法BEAR区别不太大。
 
-### 总结
+## 总结
 
 除了这些方法，已经用于强化学习的建模不确定性的方法还有不少，比如分布式强化学习。但是，不确定性的估计本身是依赖于数据质量的，而这样加权的学习方法只能解决策略估计的准确度问题，但是却很难解决策略估计不好的问题。也就是说，不确定性本身是一个很重要的指标，但是它的使用（以目前方法来说）并不能从根本上解决训练出策略不足够优的问题（就算估计的很准，策略不好那又能怎么样呢？）。如何使得这样的方法在次优甚至随机的数据集上都能有较好的表现是一个值得研究的问题。
 
-### 参考文献
+## 参考文献
 
 [1] Kendall, Alex, and Yarin Gal. "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?." Advances in neural information processing systems (NeurIPS), 2017.
 
